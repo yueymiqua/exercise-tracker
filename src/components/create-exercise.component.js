@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
+// import DatePicker from 'react-datepicker';
+// import "react-datepicker/dist/react-datepicker.css";
 
 const CreateExercise = () => {
 
@@ -27,8 +27,8 @@ const CreateExercise = () => {
     setDuration(e.target.value);
   }
 
-  const onChangeDate = (newDate) => {
-    setDate(newDate);
+  const onChangeDate = (e) => {
+    setDate(e.target.value);
   }
 
   const onSubmit = (e) => {
@@ -44,6 +44,7 @@ const CreateExercise = () => {
     console.log(exercise);
 
     window.location = '/';
+
   }
 
   return (
@@ -52,7 +53,7 @@ const CreateExercise = () => {
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label>Username: </label>
-          <select ref="userInput" 
+          <select 
             required 
             className="form-control" 
             value={username} 
@@ -85,9 +86,13 @@ const CreateExercise = () => {
         <div className="form-group">
           <label>Date: </label>
           <input type="date"
+            required
             className="form-control"
             onChange={(e) => onChangeDate(e)}
           />
+        </div>
+        <div className="form-group">
+            <input type="submit" value="Create Exercise Log" className="btn btn-primary" />
         </div>
       </form>
     </div>
