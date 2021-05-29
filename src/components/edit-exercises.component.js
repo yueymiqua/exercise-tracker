@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const EditExercise = () => {
-
+const EditExercise = (props) => {
   const [username, setUsername] = useState('');
   const [description, setDescription] = useState('');
   const [duration, setDuration] = useState(0);
@@ -14,7 +13,7 @@ const EditExercise = () => {
       .then(res => {
         setUsername(res.data.username)
         setDescription(res.data.description)
-        setDuration(res.data.description)
+        setDuration(res.data.duration)
         setDate(new Date(res.data.date))
       }).catch(err => console.log('Error: ' + err))
     axios.get('http://localhost:5000/users')
@@ -56,7 +55,7 @@ const EditExercise = () => {
 
     console.log(exercise);
 
-    axios.post(`http://localhost:5000/exercises/update/${props.match.params.id}`, exercise)
+    axios.put(`http://localhost:5000/exercises/${props.match.params.id}`, exercise)
       .then(res => console.log(res.data))
 
     window.location = '/';
